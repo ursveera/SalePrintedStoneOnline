@@ -12,8 +12,7 @@ namespace DAO.Models
         public int ProductId { get; set; }
         public string ColorName { get; set; }
         public decimal ExtraPrice { get; set; }
-
-        public Product Product { get; set; }
+        public string? ImageUrl { get; set; }
     }
 
 }

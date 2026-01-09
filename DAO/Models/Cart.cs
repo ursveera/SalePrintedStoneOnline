@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace DAO.Models
 {
-    public class Order
+    public class Cart
     {
-        public int OrderId { get; set; }
-        public int UserId { get; set; }
-        public decimal TotalAmount { get; set; }
-        public string OrderStatus { get; set; }
+        public int CartId { get; set; }
+        public string SessionId { get; set; }
+        public int? UserId { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }
