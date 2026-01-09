@@ -1,6 +1,9 @@
 CREATE TABLE Products (
-    ProductId INT IDENTITY PRIMARY KEY,
-    Name NVARCHAR(100),      -- e.g. "Printed Stone"
-    BasePrice DECIMAL(10,2), -- base price
-    IsActive BIT DEFAULT 1
+    ProductId INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(300) NULL,
+    BasePrice DECIMAL(10,2) NOT NULL,
+    DefaultImageUrl NVARCHAR(300) NULL,
+    IsActive BIT NOT NULL DEFAULT 1,
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
 );
