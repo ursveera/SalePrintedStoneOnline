@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/DbScirpts/">
+    <File Path="Orders.sql" />
+    <File Path="Products.sql" />
+    <File Path="roductColors.sql" />
+    <File Path="usres.sql" />
+  </Folder>
+  <Project Path="../API/API.csproj" />
+  <Project Path="../DAO/DAO.csproj" />
+  <Project Path="SalePrintedStoneOnline.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
