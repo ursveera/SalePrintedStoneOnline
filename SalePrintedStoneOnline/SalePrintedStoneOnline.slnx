@@ -7,6 +7,9 @@
   </Folder>
   <Project Path="../API/API.csproj" />
   <Project Path="../DAO/DAO.csproj" />
+  <Project Path="../UI/UI.Shared/UI.Shared.csproj" Id="9c3aab4e-92b9-4340-87ef-6f4cdfaeb5b4" />
+  <Project Path="../UI/UI.Web/UI.Web.csproj" Id="4b6251a0-c347-4265-b214-135a644bb358" />
+  <Project Path="../UI/UI/UI.csproj" Id="d99bb878-c88e-4ae1-b7bc-aae25a9e08c0" />
   <Project Path="SalePrintedStoneOnline.csproj">
     <Deploy Solution="Debug|*" />
   </Project>
