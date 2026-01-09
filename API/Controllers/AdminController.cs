@@ -15,16 +15,5 @@ namespace API.Controllers
             _repo = repo;
         }
 
-        [HttpGet("users")]
-        public async Task<IActionResult> GetUsers()
-            => Ok(await _repo.GetAllUsersAsync());
-
-        [HttpGet("users/{userId}/orders")]
-        public async Task<IActionResult> GetUserOrders(int userId)
-            => Ok(await _repo.GetOrdersByUserIdAsync(userId));
-
-        [HttpPut("orders/{orderId}/status")]
-        public async Task<IActionResult> UpdateStatus(int orderId, string status)
-            => Ok(await _repo.UpdateOrderStatusAsync(orderId, status));
     }
 }

@@ -2,6 +2,9 @@
 using SqlKata.Execution;
 namespace API.Repos
 {
+    using DAO.Models;
+    using SqlKata.Execution;
+
     public class UserRepository : IUserRepository
     {
         private readonly QueryFactory _db;
@@ -11,58 +14,77 @@ namespace API.Repos
             _db = db;
         }
 
-        // this is for get all users
-        public async Task<List<AdminUserDto>> GetAllUsersAsync()
+        public async Task<int> CreateAsync(User user)
         {
-            var users = await _db.Query("Users as u")
-                .LeftJoin("Orders as o", "u.UserId", "o.UserId")
-                .Select(
-                    "u.UserId",
-                    "u.Name",
-                    "u.Phone",
-                    "u.Email"
-                )
-                .SelectRaw("COUNT(o.OrderId) as TotalOrders")
-                .GroupBy("u.UserId", "u.Name", "u.Phone", "u.Email")
-                .OrderByDesc("u.UserId")
-                .GetAsync<AdminUserDto>();
-
-            return users.ToList();
+            return await _db.Query("Users")
+                .InsertGetIdAsync<int>(new
+                {
+                    user.Name,
+                    user.Phone,
+                    user.Email,
+                    user.Address,
+                    CreatedAt = DateTime.UtcNow,
+                    user.isActive,
+                });
         }
 
-        // 📦 Admin: Get orders by user
-        public async Task<List<AdminOrderDto>> GetOrdersByUserIdAsync(int userId)
+        public async Task<User?> GetByIdAsync(int userId)
         {
-            var orders = await _db.Query("Orders as o")
-                .Join("Users as u", "o.UserId", "u.UserId")
-                .Join("ProductColors as c", "o.ColorId", "c.ColorId")
-                .Where("o.UserId", userId)
-                .Select(
-                    "o.OrderId",
-                    "u.Name as CustomerName",
-                    "c.ColorName",
-                    "o.PrintedLabel",
-                    "o.TotalPrice",
-                    "o.OrderStatus",
-                    "o.CreatedAt as OrderDate"
-                )
-                .OrderByDesc("o.CreatedAt")
-                .GetAsync<AdminOrderDto>();
-
-            return orders.ToList();
+            return await _db.Query("Users")
+                .Where("UserId", userId)
+                .FirstOrDefaultAsync<User>();
         }
 
-        // 🔄 Admin: Update order status
-        public async Task<bool> UpdateOrderStatusAsync(int orderId, string status)
+        public async Task<User?> GetByPhoneAsync(string phone)
         {
-            var affected = await _db.Query("Orders")
-                .Where("OrderId", orderId)
+            return await _db.Query("Users")
+                .Where("Phone", phone)
+                .FirstOrDefaultAsync<User>();
+        }
+
+        public async Task<bool> ExistsByPhoneAsync(string phone)
+        {
+            return await _db.Query("Users")
+                .Where("Phone", phone)
+                .ExistsAsync();
+        }
+        public async Task<bool> UpdateAsync(int userId, User user)
+        {
+            var affected = await _db.Query("Users")
+                .Where("UserId", userId)
+                .Where("IsActive", true)
                 .UpdateAsync(new
                 {
-                    OrderStatus = status
+                    user.Name,
+                    user.Phone,
+                    user.Email,
+                    user.Address,
                 });
 
             return affected > 0;
+        }
+
+        // ❌ DELETE USER (Soft Delete)
+        public async Task<bool> DeleteAsync(int userId)
+        {
+            var affected = await _db.Query("Users")
+                .Where("UserId", userId)
+                .Where("IsActive", true)
+                .UpdateAsync(new
+                {
+                    IsActive = false
+                });
+
+            return affected > 0;
+        }
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            var users = await _db.Query("Users")
+                .Where("IsActive", true)          // exclude deleted users
+                .OrderByDesc("CreatedAt")         // latest first
+                .GetAsync<User>();
+
+            return users.ToList();
         }
     }
 

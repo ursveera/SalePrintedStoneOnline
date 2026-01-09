@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAO.Models
+namespace DAO.DTO
 {
-    public class User
-    {
-        public int UserId { get; set; } // PK – no validation needed
+    using System.ComponentModel.DataAnnotations;
 
+    public class CreateUserRequest
+    {
         [Required(ErrorMessage = "Name is required")]
         [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
-        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Enter a valid 10-digit mobile number")]
+        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Enter a valid 10-digit Indian mobile number")]
         public string Phone { get; set; }
 
         [EmailAddress(ErrorMessage = "Invalid email address")]
@@ -26,8 +25,6 @@ namespace DAO.Models
         [Required(ErrorMessage = "Address is required")]
         [StringLength(300, ErrorMessage = "Address cannot exceed 300 characters")]
         public string Address { get; set; }
-
-        public DateTime CreatedAt { get; set; } // set by DB / server
-        public bool isActive { get; set; }
     }
+
 }
