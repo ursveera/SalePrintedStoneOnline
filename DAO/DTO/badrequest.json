@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "message": "Validation failed",
+  "errors": [
+    "Product name is required",
+    "Base price must be greater than 0"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "message": "Product created successfully",
+  "data": {
+    "productId": 1,
+    "name": "Printed Stone",
+    "basePrice": 299.00,
+    "isActive": true,
+    "createdAt": "2026-01-09T17:30:00",
+    "colors": [
+      {
+        "colorId": 1,
+        "colorName": "Black",
+        "extraPrice": 0
+      },
+      {
+        "colorId": 2,
+        "colorName": "White",
+        "extraPrice": 20
+      },
+      {
+        "colorId": 3,
+        "colorName": "Gold",
+        "extraPrice": 50
+      }
+    ]
+  }
+}

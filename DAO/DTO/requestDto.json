@@ -1,0 +1,28 @@
+{
+  "name": "Printed Stone",
+  "description": "Custom printed stone with personalized message",
+  "basePrice": 299.00,
+  "defaultImageUrl": "https://yourcdn.com/images/stone_default.png",
+  "isActive": true,
+  "colors": [
+    {
+      "colorName": "Black",
+      "extraPrice": 0,
+      "imageUrl": "https://yourcdn.com/images/stone_black.png"
+    },
+    {
+      "colorName": "White",
+      "extraPrice": 20,
+      "imageUrl": "https://yourcdn.com/images/stone_white.png"
+    },
+    {
+      "colorName": "Gold",
+      "extraPrice": 50,
+      "imageUrl": "https://yourcdn.com/images/stone_gold.png"
+    }
+  ],
+  "images": [
+    "https://yourcdn.com/images/stone_1.png",
+    "https://yourcdn.com/images/stone_2.png"
+  ]
+}
