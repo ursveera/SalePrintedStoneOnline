@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "currency": "INR",
+  "items": [
+    {
+      "productId": 1,
+      "name": "Printed Stone",
+      "description": "Custom printed stone with your message",
+      "basePrice": 299.00,
+      "colors": [
+        {
+          "colorId": 1,
+          "name": "Black",
+          "extraPrice": 0,
+          "imageUrl": "https://yourcdn.com/images/stone_black.png"
+        },
+        {
+          "colorId": 2,
+          "name": "White",
+          "extraPrice": 20,
+          "imageUrl": "https://yourcdn.com/images/stone_white.png"
+        },
+        {
+          "colorId": 3,
+          "name": "Gold",
+          "extraPrice": 50,
+          "imageUrl": "https://yourcdn.com/images/stone_gold.png"
+        }
+      ]
+    }
+  ]
+}
