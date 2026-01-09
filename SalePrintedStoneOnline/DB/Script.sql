@@ -50,9 +50,12 @@ CREATE TABLE Users (
     Phone NVARCHAR(15) NOT NULL,
     Email NVARCHAR(100) NULL,
     Address NVARCHAR(300) NOT NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    IsActive bit
 );
 
+ALTER TABLE Users
+ADD IsActive BIT;
 /* ================================
    CART
 ================================ */

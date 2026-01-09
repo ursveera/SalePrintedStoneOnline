@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "message": "User already exists",
+  "data": {
+    "userId": 1,
+    "name": "asdfdas Kumar",
+    "phone": "9876543210"
+  }
+}

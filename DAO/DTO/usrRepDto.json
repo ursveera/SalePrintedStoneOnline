@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "message": "User created successfully",
+  "data": {
+    "userId": 1,
+    "name": "Ramesh Kumar",
+    "phone": "9876543210",
+    "email": "ramesh@gmail.com",
+    "address": "No 12, Anna Nagar, Chennai - 600040",
+    "createdAt": "2026-01-09T18:10:00"
+  }
+}
